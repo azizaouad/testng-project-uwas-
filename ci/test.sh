@@ -1,0 +1,9 @@
+#!/bin/sh
+
+VERSION="${CI_COMMIT_BRANCH}-${CI_COMMIT_SHORT_SHA}"
+REPOSITORY="uwas-${CI_COMMIT_BRANCH}"
+
+echo $CONTAINER_REGISTRY_PASSWORD | docker login $CONTAINER_REGISTRY -u $CONTAINER_REGISTRY_USER --password-stdin
+docker pull $CONTAINER_REGISTRY/$REPOSITORY/$IMAGE_NAME:latest
+echo "Running tests on ${QA_ENVIRONMENT} using Browser Driver ${WEB_DRIVER}"
+docker run --cpus 4 --memory 4g -e ENVIRONMENT="${QA_ENVIRONMENT}" -e DRIVER="${WEB_DRIVER}" -v $PWD:/app --rm $CONTAINER_REGISTRY/$REPOSITORY/$IMAGE_NAME:latest

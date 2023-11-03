@@ -1,0 +1,48 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+
+<suite name="uwas">
+
+
+    <test name="LoginTest">
+       <classes>
+           <class name="stepDefinitions.login_steps"/>
+<!-- &lt;!&ndash;            <class name="stepDefinitions.account_steps"/>&ndash;&gt; -->
+       </classes>
+   </test>
+   <test name="AccountTest">
+       <classes>
+           <class name="stepDefinitions.account_steps"/>
+       </classes>
+   </test>
+    <test name="Addevent">
+        <classes>
+            <class name="stepDefinitions.add_event_steps"/>
+        </classes>
+    </test>
+    <test name="EditEvent">
+        <classes>
+            <class name="stepDefinitions.edit_event_steps"></class>
+        </classes>
+    </test>
+    <test name="cas de test">
+        <classes>
+            <class name="stepDefinitions.succestochangepassword"></class>
+        </classes>
+    </test>
+
+</suite>
+<!-- <suite name="CucumberTestSuite">
+    <test name="CucumberTests">
+        <classes>
+            <class name="runner.TestRunner"/>
+        </classes>
+    </test>
+</suite> -->
+
+<!--<suite name="AccountSuite">-->
+<!--<test name="AccountTest">-->
+<!--    <classes>-->
+<!--        <class name="stepDefinitions.account_steps"/>-->
+<!--    </classes>-->
+<!--</test>-->
+<!--</suite>-->
