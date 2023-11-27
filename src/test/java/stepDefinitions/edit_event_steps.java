@@ -5,18 +5,17 @@ import java.util.Random;
 import org.openqa.selenium.By;
 import Base.Base;
 import POM.AddEventPage;
-// import POM.ArchiveEventPage;
 import POM.EditEventPage;
 import POM.LoginPage;
-import io.cucumber.java.After;
-import io.cucumber.java.Before;
-import io.cucumber.java.en.And;
-import io.cucumber.java.en.Then;
+
+import org.testng.ITestResult;
+import org.testng.Reporter;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 public class edit_event_steps extends Base {
+    ITestResult testResult ;
     private String addRandomCharacter(String title) {
         Random random = new Random();
         char randomChar = (char) (random.nextInt(26) + 'a'); // Generate a random lowercase letter
@@ -52,9 +51,11 @@ public class edit_event_steps extends Base {
     }
 
     @Test(groups = "@edit")
-    @And("photographer click on the three buttouns for updating")
     public void PhotographerChangeTheNameOfEvent() {
         try {
+            testResult = Reporter.getCurrentTestResult(); // Récupérer le résultat du test
+            String testName = testResult.getMethod().getMethodName();
+            System.out.println("Début du test : " + testName);
             Thread.sleep(3000);
             EditEventPage.ClickOnTheThreePoints(nameofevent, locationofevent);
             EditEventPage.ClickOnEditBTN();
@@ -67,10 +68,12 @@ public class edit_event_steps extends Base {
 
     }
     @Test(groups = "@edit")
-    @And("photographer choose edit")
     public void PhotographerChangeTheLocationOfEvent() {
 
         try {
+            testResult = Reporter.getCurrentTestResult(); // Récupérer le résultat du test
+            String testName = testResult.getMethod().getMethodName();
+            System.out.println("Début du test : " + testName);
             Thread.sleep(3000);
             EditEventPage.ClickOnTheThreePoints(nameofevent, locationofevent);
             EditEventPage.ClickOnEditBTN();
@@ -84,10 +87,12 @@ public class edit_event_steps extends Base {
     }
 
     @Test(groups = "@edit")
-    @And("photographer choose edit")
     public void PhotographerChangeTheDateOfEvent() {
 
         try {
+            testResult = Reporter.getCurrentTestResult(); // Récupérer le résultat du test
+            String testName = testResult.getMethod().getMethodName();
+            System.out.println("Début du test : " + testName);
             Thread.sleep(3000);
             EditEventPage.ClickOnTheThreePoints(nameofevent, locationofevent);
             EditEventPage.ClickOnEditBTN();
@@ -100,10 +105,12 @@ public class edit_event_steps extends Base {
 
     }
     @Test(groups = "@edit")
-    @And("photographer choose edit")
     public void PhotographerChangeTheDateAndTheTitleAndTheLocationOfEvent() {
 
         try {
+            testResult = Reporter.getCurrentTestResult(); // Récupérer le résultat du test
+            String testName = testResult.getMethod().getMethodName();
+            System.out.println("Début du test : " + testName);
             Thread.sleep(3000);
             EditEventPage.ClickOnTheThreePoints(nameofevent, locationofevent);
             EditEventPage.ClickOnEditBTN();
@@ -116,35 +123,6 @@ public class edit_event_steps extends Base {
             throw new RuntimeException(e);
         }
 
-    }
-    @And("photographer should change the location of event")
-    public void change_location_of_event() {
-        EditEventPage.enterTheNewLocationOfEvent(newlocationofevent);
-    }
-
-    @Then("location of event is updated")
-    public void location_is_updated() throws InterruptedException {
-        EditEventPage.TheDetailOfEventIsUpdated(nameofevent, newlocationofevent, Today);
-    }
-
-    @And("photographer should change the date of event")
-    public void change_date_of_event() {
-        AddEventPage.enterDateOfEvent(newdate);
-    }
-
-    @And("photographer click on the button of ok")
-    public void photographer_click_on_the_button_of_ok() {
-        AddEventPage.ClickOnOKBTN();
-    }
-
-    @Then("date of event is updated")
-    public void date_is_updated() throws InterruptedException {
-        EditEventPage.TheDetailOfEventIsUpdated(nameofevent, locationofevent, newdate);
-    }
-
-    @Then("details of event is updated")
-    public void details_is_updated() throws InterruptedException {
-        EditEventPage.TheDetailOfEventIsUpdated(newnameofevent, newlocationofevent, newdate);
     }
 
 }

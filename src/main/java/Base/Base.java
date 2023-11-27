@@ -85,17 +85,17 @@ public class Base {
         if ("windows".equalsIgnoreCase(system)) {
             WebDriverManager.chromedriver().setup();
             ChromeOptions options = new ChromeOptions();
-            options.addArguments("headless");
-            options.addArguments("no-sandbox");
-            // options.addArguments("start-maximized");
-            options.addArguments("--window-size=1920,1080");
+//            options.addArguments("headless");
+//            options.addArguments("no-sandbox");
+//            // options.addArguments("start-maximized");
+//            options.addArguments("--window-size=1920,1080");
 
             options.addArguments("--remote-allow-origins=*");
 
             driver = new ChromeDriver(options);
             driver.manage().window().maximize();
 
-            driver.get(props.getProperty("url"));
+//            driver.get(props.getProperty("url"));
 
         } else if ("linux".equalsIgnoreCase(system)) {
             System.setProperty("webdriver.chrome.driver", "/root/chromedriver/chromedriver");
@@ -110,10 +110,23 @@ public class Base {
             driver = new ChromeDriver(options);
             driver.manage().window().maximize();
 
-            driver.get(props.getProperty("url"));
+//            driver.get(props.getProperty("url"));
 
         } else {
             System.out.println("erreur");
+        }
+        String env = props.getProperty("env");
+        if ("recette".equalsIgnoreCase(env)) {
+            driver.get(props.getProperty("urlRecette"));
+        } else {
+            if ("stage".equalsIgnoreCase(env)) {
+                driver.get(props.getProperty("urlStage"));
+
+            } else {
+                System.out.println("error");
+
+            }
+
         }
 
 

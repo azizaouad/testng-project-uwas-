@@ -5,11 +5,13 @@
   
       Then user to login with valid email and valid password
     @login
-    Scenario: login with invalid credentials
+    Scenario Outline: login with invalid credentials
 
 
 
-      Then login with invalid credentials
-
+      Then login with invalid credentials "<email>" and "<password>"
+Examples:
+    | email      | password   |
+    | p@gmail.com| Admin123!  |
 
 
